@@ -1,6 +1,5 @@
-import React from 'react'
-import UserSideNav from '../../components/UserSideNav'
 import { Outlet } from 'react-router-dom'
+import UserSideNav from '../../components/UserSideNav'
 
 export default function UserLayout() {
   return (

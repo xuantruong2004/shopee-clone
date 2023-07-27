@@ -1,9 +1,9 @@
 import React, { ElementType, useRef, useState } from 'react'
 // eslint-disable-next-line import/no-duplicates
-import { useFloating, useHover, useInteractions, arrow, offset, shift, type Placement } from '@floating-ui/react'
+import { arrow, offset, shift, useFloating, useHover, useInteractions, type Placement } from '@floating-ui/react'
 // eslint-disable-next-line import/no-duplicates
 import { FloatingPortal } from '@floating-ui/react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
 
 interface Props {
   children: React.ReactNode

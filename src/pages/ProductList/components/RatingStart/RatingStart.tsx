@@ -1,9 +1,8 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-import React from 'react'
 import { Link, createSearchParams } from 'react-router-dom'
 import path from 'src/constants/path'
-import { QueryConfig } from '../../ProductList'
 import useQueryParams from 'src/hooks/useQueryParams'
+import { QueryConfig } from '../../ProductList'
 type startType = number
 export default function RatingStart({ queryConfig }: { queryConfig: QueryConfig }) {
   const { rating_filter } = useQueryParams()

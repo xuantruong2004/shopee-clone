@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form'
 import { Link, createSearchParams, useNavigate } from 'react-router-dom'
 import authApi from 'src/apis/auth.api'
 import purchaseApi from 'src/apis/purchase.api'
+import userImageDefault from 'src/assets/image/userDefault.jpg'
 import path from 'src/constants/path'
 import { purchaseStatus } from 'src/constants/purchase'
 import { AppContext } from 'src/contexts/app.context'
@@ -12,7 +13,6 @@ import useQueryConfig from 'src/hooks/useQueryConfig'
 import { Schema, schema } from 'src/utils/rules'
 import { formatCurrency } from 'src/utils/utils'
 import Popover from '../Popover'
-import userImageDefault from 'src/assets/image/userDefault.jpg'
 
 type FormData = Pick<Schema, 'name'>
 const nameSchema = schema.pick(['name'])

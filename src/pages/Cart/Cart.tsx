@@ -1,7 +1,7 @@
 import { useMutation, useQuery } from '@tanstack/react-query'
 import { produce } from 'immer'
 import { keyBy } from 'lodash'
-import React, { useContext, useEffect, useMemo, useState } from 'react'
+import React, { useContext, useEffect, useMemo } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import purchaseApi from 'src/apis/purchase.api'
@@ -10,7 +10,6 @@ import QuantityController from 'src/components/QuantityController'
 import path from 'src/constants/path'
 import { purchaseStatus } from 'src/constants/purchase'
 import { AppContext } from 'src/contexts/app.context'
-import { Purchase } from 'src/type/purchase.type'
 import { formatCurrency } from 'src/utils/utils'
 
 export default function Cart() {

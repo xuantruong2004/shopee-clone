@@ -1,8 +1,8 @@
-import React, { useContext } from 'react'
+import { useContext } from 'react'
 import { Link, NavLink } from 'react-router-dom'
+import userImageDefault from 'src/assets/image/userDefault.jpg'
 import path from 'src/constants/path'
 import { AppContext } from 'src/contexts/app.context'
-import userImageDefault from 'src/assets/image/userDefault.jpg'
 
 export default function UserSideNav() {
   const { profile } = useContext(AppContext)

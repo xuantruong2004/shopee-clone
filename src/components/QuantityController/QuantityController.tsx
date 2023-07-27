@@ -1,4 +1,3 @@
-import { Product } from 'src/type/product.type'
 import InputNumber, { InputNumberProps } from '../InputNumber'
 
 interface Props extends InputNumberProps {

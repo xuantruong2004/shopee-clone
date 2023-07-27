@@ -1,7 +1,6 @@
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useMutation } from '@tanstack/react-query'
 import { omit } from 'lodash'
-import React from 'react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'react-toastify'
 import userApi, { bodyUpdateProfile } from 'src/apis/user.api'
@@ -18,9 +17,6 @@ export default function ChangePassword() {
   const {
     register,
     handleSubmit,
-    control,
-    setValue,
-    watch,
     setError,
     formState: { errors }
   } = useForm<FormData>({

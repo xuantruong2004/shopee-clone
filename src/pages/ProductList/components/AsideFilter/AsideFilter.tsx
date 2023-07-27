@@ -1,16 +1,15 @@
-import React, { useEffect, useState } from 'react'
+import { yupResolver } from '@hookform/resolvers/yup'
+import { omit } from 'lodash'
+import { Controller, useForm } from 'react-hook-form'
 import { Link, createSearchParams, useNavigate } from 'react-router-dom'
 import Button from 'src/components/Button'
-import path from 'src/constants/path'
-import { category } from 'src/type/category.type'
-import { QueryConfig } from '../../ProductList'
-import useQueryParams from 'src/hooks/useQueryParams'
 import InputNumber from 'src/components/InputNumber'
-import { Controller, useForm } from 'react-hook-form'
+import path from 'src/constants/path'
+import useQueryParams from 'src/hooks/useQueryParams'
+import { category } from 'src/type/category.type'
 import { schema } from 'src/utils/rules'
-import { yupResolver } from '@hookform/resolvers/yup'
+import { QueryConfig } from '../../ProductList'
 import RatingStart from '../RatingStart'
-import { omit } from 'lodash'
 
 interface Props {
   categoryList: category[]
