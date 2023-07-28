@@ -1,4 +1,4 @@
-// import { yupResolver } from '@hookform/resolvers/yup'
+import { yupResolver } from '@hookform/resolvers/yup'
 import { useMutation, useQuery } from '@tanstack/react-query'
 import React, { useContext, useEffect, useMemo, useRef, useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
@@ -9,12 +9,12 @@ import Input from 'src/components/Input'
 import InputNumber from 'src/components/InputNumber'
 import { AppContext } from 'src/contexts/app.context'
 import { setProfileToLS } from 'src/utils/auth'
-import { UserSchema } from 'src/utils/rules'
+import { UserSchema, userSchema } from 'src/utils/rules'
 import DateSelect from '../../components/DateSelect'
 const srcApi = 'https://api-ecom.duthanhduoc.com/images/'
 
 type FormData = Pick<UserSchema, 'name' | 'address' | 'date_of_birth' | 'avatar' | 'phone'>
-// const profileSchema = userSchema.pick(['name', 'address', 'phone', 'avatar', 'date_of_birth'])
+const profileSchema = userSchema.pick(['name', 'address', 'phone', 'avatar', 'date_of_birth'])
 export default function Profile() {
   const fileInputRef = useRef<HTMLInputElement>(null)
   const { setProfile } = useContext(AppContext)
@@ -43,7 +43,7 @@ export default function Profile() {
       avatar: '',
       date_of_birth: new Date(1990, 0, 1)
     }
-    // resolver: yupResolver(profileSchema)
+    resolver: yupResolver(profileSchema)
   })
   console.log(profile)
   useEffect(() => {

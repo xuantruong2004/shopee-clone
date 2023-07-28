@@ -1,4 +1,4 @@
-// import { yupResolver } from '@hookform/resolvers/yup'
+import { yupResolver } from '@hookform/resolvers/yup'
 import { useMutation } from '@tanstack/react-query'
 import { omit } from 'lodash'
 import { useForm } from 'react-hook-form'
@@ -7,11 +7,11 @@ import userApi, { bodyUpdateProfile } from 'src/apis/user.api'
 import Button from 'src/components/Button'
 import Input from 'src/components/Input'
 import { ErrorResponseApi } from 'src/type/utils.type'
-import { UserSchema } from 'src/utils/rules'
+import { UserSchema, userSchema } from 'src/utils/rules'
 import { isAxiosUnprocessableEntity } from 'src/utils/utils'
 
 type FormData = Pick<UserSchema, 'password' | 'new_password' | 'confirm_password'>
-// const profileSchema = userSchema.pick(['password', 'new_password', 'confirm_password'])
+const profileSchema = userSchema.pick(['password', 'new_password', 'confirm_password'])
 
 export default function ChangePassword() {
   const {
@@ -25,7 +25,7 @@ export default function ChangePassword() {
       new_password: '',
       confirm_password: ''
     }
-    // resolver: yupResolver(profileSchema)
+    resolver: yupResolver(profileSchema)
   })
   const updateProfileMutation = useMutation({
     mutationFn: (body: bodyUpdateProfile) => userApi.updateProfile(body)
