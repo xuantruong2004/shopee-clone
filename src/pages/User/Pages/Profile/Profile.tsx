@@ -42,7 +42,7 @@ export default function Profile() {
       address: '',
       avatar: '',
       date_of_birth: new Date(1990, 0, 1)
-    }
+    },
     resolver: yupResolver(profileSchema)
   })
   console.log(profile)

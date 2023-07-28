@@ -24,7 +24,7 @@ export default function ChangePassword() {
       password: '',
       new_password: '',
       confirm_password: ''
-    }
+    },
     resolver: yupResolver(profileSchema)
   })
   const updateProfileMutation = useMutation({
