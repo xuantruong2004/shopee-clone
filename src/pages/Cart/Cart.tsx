@@ -393,6 +393,7 @@ export default function Cart() {
                                   value,
                                   value <= product.product.quantity &&
                                     value >= 1 &&
+                                    purchaseList !== undefined &&
                                     value !== purchaseList[index]?.buy_count
                                 )
                               }

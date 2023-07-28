@@ -13,8 +13,8 @@ import { ErrorResponseApi } from 'src/type/utils.type'
 import { Schema, schema } from 'src/utils/rules'
 import { isAxiosUnprocessableEntity } from 'src/utils/utils'
 
-type FormData = Pick<Schema, 'email' | 'password'>
-const loginSchema = schema.pick(['email', 'password'])
+type FormData = Pick<Schema, 'email' | 'password' | 'confirm_password'>
+const loginSchema = schema.pick(['email', 'password', 'confirm_password'])
 
 export default function Register() {
   const { setIsAuthenticated, setProfile } = useContext(AppContext)

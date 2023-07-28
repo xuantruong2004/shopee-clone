@@ -1,4 +1,4 @@
-import { yupResolver } from '@hookform/resolvers/yup'
+// import { yupResolver } from '@hookform/resolvers/yup'
 import { useMutation, useQuery } from '@tanstack/react-query'
 import React, { useContext, useEffect, useMemo, useRef, useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
@@ -8,15 +8,13 @@ import Button from 'src/components/Button'
 import Input from 'src/components/Input'
 import InputNumber from 'src/components/InputNumber'
 import { AppContext } from 'src/contexts/app.context'
-import { ErrorResponseApi } from 'src/type/utils.type'
 import { setProfileToLS } from 'src/utils/auth'
-import { UserSchema, userSchema } from 'src/utils/rules'
-import { isAxiosUnprocessableEntity } from 'src/utils/utils'
+import { UserSchema } from 'src/utils/rules'
 import DateSelect from '../../components/DateSelect'
 const srcApi = 'https://api-ecom.duthanhduoc.com/images/'
 
 type FormData = Pick<UserSchema, 'name' | 'address' | 'date_of_birth' | 'avatar' | 'phone'>
-const profileSchema = userSchema.pick(['name', 'address', 'phone', 'avatar', 'date_of_birth'])
+// const profileSchema = userSchema.pick(['name', 'address', 'phone', 'avatar', 'date_of_birth'])
 export default function Profile() {
   const fileInputRef = useRef<HTMLInputElement>(null)
   const { setProfile } = useContext(AppContext)
@@ -36,7 +34,6 @@ export default function Profile() {
     control,
     setValue,
     watch,
-    setError,
     formState: { errors }
   } = useForm<FormData>({
     defaultValues: {
@@ -45,8 +42,8 @@ export default function Profile() {
       address: '',
       avatar: '',
       date_of_birth: new Date(1990, 0, 1)
-    },
-    resolver: yupResolver(profileSchema)
+    }
+    // resolver: yupResolver(profileSchema)
   })
   console.log(profile)
   useEffect(() => {
@@ -90,17 +87,17 @@ export default function Profile() {
         }
       )
     } catch (error) {
-      if (isAxiosUnprocessableEntity<ErrorResponseApi<FormData>>(error)) {
-        const formError = error.response?.data.data
-        if (formError) {
-          Object.keys(formError).forEach((key) => {
-            setError(key as keyof FormData, {
-              message: formError[key as keyof FormData],
-              type: 'Server'
-            })
-          })
-        }
-      }
+      // if (isAxiosUnprocessableEntity<ErrorResponseApi<FormData>>(error)) {
+      //   const formError = error.response?.data.data
+      //   if (formError) {
+      //     Object.keys(formError).forEach((key) => {
+      //       // setError(key as keyof FormData, {
+      //       //   message: formError[key as keyof FormData],
+      //       //   type: 'Server'
+      //       // })
+      //     })
+      //   }
+      // }
     }
   })
   const avatar = watch('avatar')

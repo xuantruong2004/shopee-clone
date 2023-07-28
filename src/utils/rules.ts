@@ -102,7 +102,12 @@ export const userSchema = yup.object({
   date_of_birth: yup.date().max(new Date(), 'Hãy chọn một ngày trong quá khứ'),
   password: schema.fields['password'] as yup.StringSchema<string | undefined, yup.AnyObject, undefined, ''>,
   new_password: schema.fields['password'] as yup.StringSchema<string | undefined, yup.AnyObject, undefined, ''>,
-  confirm_password: handleConfirmPassword('new_password'),
+  confirm_password: handleConfirmPassword('new_password') as yup.StringSchema<
+    string | undefined,
+    yup.AnyObject,
+    undefined,
+    ''
+  >,
   avatar: yup.string().max(1000, 'Độ dài tối đa là 1000 ký tự')
 })
 
