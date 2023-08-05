@@ -1,18 +1,29 @@
-import { useContext } from 'react'
+import { useContext, lazy, Suspense } from 'react'
 import { Navigate, Outlet, useRoutes } from 'react-router-dom'
 import path from './constants/path'
 import { AppContext } from './contexts/app.context'
 import MainLayout from './layouts/MainLayout'
-import RegisterLayout from './layouts/RegisterLayout'
-import Cart from './pages/Cart'
-import Login from './pages/Login'
-import ProductDetail from './pages/ProductDetail'
-import ProductList from './pages/ProductList'
-import Register from './pages/Register'
-import ChangePassword from './pages/User/Pages/ChangePassword'
-import HistoryPurchase from './pages/User/Pages/HistoryPurchase'
-import Profile from './pages/User/Pages/Profile'
 import UserLayout from './pages/User/layout/LayoutUser'
+import RegisterLayout from './layouts/RegisterLayout'
+// import Cart from './pages/Cart'
+// import Login from './pages/Login'
+// import ProductDetail from './pages/ProductDetail'
+// import ProductList from './pages/ProductList'
+// import Register from './pages/Register'
+// import ChangePassword from './pages/User/Pages/ChangePassword'
+// import HistoryPurchase from './pages/User/Pages/HistoryPurchase'
+// import Profile from './pages/User/Pages/Profile'
+// import NotFound from './pages/NotFound'
+
+const Login = lazy(() => import('./pages/Login'))
+const Register = lazy(() => import('./pages/Register'))
+const ProductList = lazy(() => import('./pages/ProductList'))
+const ProductDetail = lazy(() => import('./pages/ProductDetail'))
+const Profile = lazy(() => import('./pages/User/Pages/Profile'))
+const ChangePassword = lazy(() => import('./pages/User/Pages/ChangePassword'))
+const HistoryPurchase = lazy(() => import('./pages/User/Pages/HistoryPurchase'))
+const Cart = lazy(() => import('./pages/Cart'))
+const NotFound = lazy(() => import('./pages/NotFound'))
 
 function ProtectedRoute() {
   const { isAuthenticated } = useContext(AppContext)
@@ -31,7 +42,9 @@ export default function useRouterElement() {
       index: true,
       element: (
         <MainLayout>
-          <ProductList />
+          <Suspense>
+            <ProductList />
+          </Suspense>
         </MainLayout>
       )
     },
@@ -39,7 +52,9 @@ export default function useRouterElement() {
       path: path.productDetail,
       element: (
         <MainLayout>
-          <ProductDetail />
+          <Suspense>
+            <ProductDetail />
+          </Suspense>
         </MainLayout>
       )
     },
@@ -51,7 +66,9 @@ export default function useRouterElement() {
           path: path.user,
           element: (
             <MainLayout>
-              <UserLayout />
+              <Suspense>
+                <UserLayout />
+              </Suspense>
             </MainLayout>
           ),
           children: [
@@ -73,7 +90,9 @@ export default function useRouterElement() {
           path: path.cart,
           element: (
             <MainLayout>
-              <Cart />
+              <Suspense>
+                <Cart />
+              </Suspense>
             </MainLayout>
           )
         }
@@ -87,7 +106,9 @@ export default function useRouterElement() {
           path: path.register,
           element: (
             <RegisterLayout>
-              <Register />
+              <Suspense>
+                <Register />
+              </Suspense>
             </RegisterLayout>
           )
         },
@@ -95,11 +116,23 @@ export default function useRouterElement() {
           path: path.login,
           element: (
             <RegisterLayout>
-              <Login />
+              <Suspense>
+                <Login />
+              </Suspense>
             </RegisterLayout>
           )
         }
       ]
+    },
+    {
+      path: '*',
+      element: (
+        <MainLayout>
+          <Suspense>
+            <NotFound />
+          </Suspense>
+        </MainLayout>
+      )
     }
   ])
   return rouetElement

@@ -49,7 +49,6 @@ export default function Header() {
   }
 
   const onSubmitSearch = handleSubmit((data) => {
-    console.log(data.name)
     navigate({
       pathname: path.home,
       search: createSearchParams({
@@ -59,7 +58,6 @@ export default function Header() {
     })
   })
 
-  console.log('profile', profile)
   return (
     <div className=' bg-orange'>
       <div className='container text-white'>

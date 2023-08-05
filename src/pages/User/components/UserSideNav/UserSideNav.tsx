@@ -17,7 +17,7 @@ export default function UserSideNav() {
           />
         </Link>
         <div className='ml-4 flex-grow'>
-          <div className='font-bold text-black'>truongxuan007</div>
+          <div className='font-bold text-black'>{profile?.email}</div>
           <Link to={path.profile} className='flex items-center capitalize text-gray-400'>
             <svg
               xmlns='http://www.w3.org/2000/svg'

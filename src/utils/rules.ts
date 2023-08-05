@@ -96,19 +96,24 @@ export const schema = yup
   .required()
 
 export const userSchema = yup.object({
-  name: yup.string().max(160, 'Độ dài tối đa la 160 ký tự'),
-  phone: yup.string().max(20, 'Độ dài tối đa la 20 ký tự'),
-  address: yup.string().max(160, 'Độ dài tối đa la 160 ký tự'),
-  date_of_birth: yup.date().max(new Date(), 'Hãy chọn một ngày trong quá khứ'),
-  password: schema.fields['password'] as yup.StringSchema<string | undefined, yup.AnyObject, undefined, ''>,
-  new_password: schema.fields['password'] as yup.StringSchema<string | undefined, yup.AnyObject, undefined, ''>,
-  confirm_password: handleConfirmPassword('new_password') as yup.StringSchema<
-    string | undefined,
-    yup.AnyObject,
-    undefined,
-    ''
-  >,
-  avatar: yup.string().max(1000, 'Độ dài tối đa là 1000 ký tự')
+  name: yup.string().default('').max(160, 'Độ dài tối đa la 160 ký tự'),
+  phone: yup.string().default('').max(20, 'Độ dài tối đa la 20 ký tự'),
+  address: yup.string().default('').max(160, 'Độ dài tối đa la 160 ký tự'),
+  date_of_birth: yup.date().default(new Date(1990, 0, 1)).max(new Date(), 'Hãy chọn một ngày trong quá khứ'),
+  password: yup
+    .string()
+    .default('')
+    .required('Password là bắt buộc')
+    .min(6, 'Độ dài password từ 5 - 160 kí tự')
+    .max(160, 'Độ dài password từ 5 - 160 kí tự'),
+  new_password: yup
+    .string()
+    .default('')
+    .required('Password là bắt buộc')
+    .min(6, 'Độ dài password từ 5 - 160 kí tự')
+    .max(160, 'Độ dài password từ 5 - 160 kí tự'),
+  confirm_password: handleConfirmPassword('new_password'),
+  avatar: yup.string().default('').max(1000, 'Độ dài tối đa là 1000 ký tự')
 })
 
 export const loginSchema = schema.omit(['confirm_password'])
