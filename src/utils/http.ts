@@ -28,9 +28,7 @@ class Http {
       baseURL: 'https://api-ecom.duthanhduoc.com',
       timeout: 10000,
       headers: {
-        'Content-Type': 'application/json',
-        'expire-access-token': 5,
-        'expire-refresh-token': 20
+        'Content-Type': 'application/json'
       }
     })
     this.instance.interceptors.request.use(
