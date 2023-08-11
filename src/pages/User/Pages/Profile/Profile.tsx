@@ -87,7 +87,7 @@ export default function Profile() {
         }
       )
     } catch (error) {
-      // if (isAxiosUnprocessableEntity<ErrorResponseApi<FormData>>(error)) {
+      // if (isAxiosUnprocessableEntityError<ErrorResponseApi<FormData>>(error)) {
       //   const formError = error.response?.data.data
       //   if (formError) {
       //     Object.keys(formError).forEach((key) => {

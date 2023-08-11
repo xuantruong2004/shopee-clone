@@ -11,7 +11,7 @@ import path from 'src/constants/path'
 import { AppContext } from 'src/contexts/app.context'
 import { ErrorResponseApi } from 'src/type/utils.type'
 import { Schema, schema } from 'src/utils/rules'
-import { isAxiosUnprocessableEntity } from 'src/utils/utils'
+import { isAxiosUnprocessableEntityError } from 'src/utils/utils'
 
 type FormData = Pick<Schema, 'email' | 'password'>
 const loginSchema = schema.pick(['email', 'password'])
@@ -42,7 +42,7 @@ export default function Login() {
         toast.success(data.data.message)
       },
       onError: (error) => {
-        if (isAxiosUnprocessableEntity<ErrorResponseApi<FormData>>(error)) {
+        if (isAxiosUnprocessableEntityError<ErrorResponseApi<FormData>>(error)) {
           const formError = error.response?.data.data
           if (formError) {
             Object.keys(formError).forEach((key) => {

@@ -9,7 +9,7 @@ import Button from 'src/components/Button'
 import Input from 'src/components/Input'
 import { ErrorResponseApi } from 'src/type/utils.type'
 import { UserSchema, userSchema } from 'src/utils/rules'
-import { isAxiosUnprocessableEntity } from 'src/utils/utils'
+import { isAxiosUnprocessableEntityError } from 'src/utils/utils'
 
 type FormData = Pick<UserSchema, 'password' | 'new_password' | 'confirm_password'>
 const profileSchema = userSchema.pick(['password', 'new_password', 'confirm_password'])
@@ -38,7 +38,7 @@ export default function ChangePassword() {
       toast.success(res.data.message)
     } catch (error) {
       console.log(error)
-      if (isAxiosUnprocessableEntity<ErrorResponseApi<FormData>>(error)) {
+      if (isAxiosUnprocessableEntityError<ErrorResponseApi<FormData>>(error)) {
         const formError = error.response?.data.data
         if (formError) {
           Object.keys(formError).forEach((key) => {
